@@ -5,22 +5,22 @@ import { NextResponse } from "next/server";
 
 async function update(userdata) {
   const uri = process.env.MONGO_URI;
-  console.log("broken useless junk:",uri, process.env);
+  console.log("broken useless junk:", uri, process.env);
   const client = new MongoClient(uri);
   await client.connect();
   const session = client.startSession();
-  try {
-    console.log("starting db update");
-    await session.withTransaction(async () => {
-      console.log("inserting data");
-      const collection = client.db("yw").collection("peeps");
-      await collection.insertOne(userdata, { session });
-      console.log("finished 💩");
-    });
-  } finally {
-    await session.endSession();
-    await client.close();
-  }
+  // try {
+  console.log("starting db update");
+  await session.withTransaction(async () => {
+    console.log("inserting data");
+    const collection = client.db("yw").collection("peeps");
+    await collection.insertOne(userdata, { session });
+    console.log("finished 💩");
+  });
+  // } finally {
+  await session.endSession();
+  await client.close();
+  // }
 }
 
 export async function POST(req, res) {
@@ -33,12 +33,12 @@ export async function POST(req, res) {
     {}
   );
 
-  handleSurveyData(data);
+  await handleSurveyData(data);
   console.log("moved on");
   return NextResponse.json({ success: true }, { status: 200 });
 }
 
-function handleSurveyData(data) {
+async function handleSurveyData(data) {
   // let data = Array.from(e.entries()).reduce(
   //   (result, [key, value]) => Object.assign(result, { [key]: value }),
   //   {},
@@ -55,7 +55,7 @@ function handleSurveyData(data) {
 
   console.log(data);
   // try {
-  update(data).then(() => {
+  await update(data).then(() => {
     console.log("success");
     redirect("/done");
   });
