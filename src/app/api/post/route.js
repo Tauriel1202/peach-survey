@@ -54,15 +54,15 @@ function handleSurveyData(data) {
   }
 
   console.log(data);
-  try {
-    update(data).then(() => {
-      console.log("success");
-    });
-  } catch (error) {
-    console.log(error);
-    return;
-  }
-  redirect("/done");
+  // try {
+  update(data).then(() => {
+    console.log("success");
+    redirect("/done");
+  });
+  // } catch (error) {
+    // console.log(error);
+    // return;
+  // }
 }
 
 export async function GET() {
