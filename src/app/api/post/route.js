@@ -17,7 +17,7 @@ async function update(userdata) {
   // await session.withTransaction(async () => {
   console.log("inserting data");
   const collection = client.db("yw").collection("peeps");
-  await collection.insertOne(userdata, { session });
+  await collection.insertOne(userdata);
   console.log("finished 💩");
   // });
   // } finally {
