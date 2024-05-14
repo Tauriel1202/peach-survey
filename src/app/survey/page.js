@@ -1,7 +1,7 @@
 import ClientButton from "@/app/lib/clientButton";
 import data from "@/app/survey/data.json";
 import Username from "@/app/lib/Username";
-import handleSubmit from "@/app/survey/submit";
+// import handleSubmit from "@/app/survey/submit";
 
 export default function Page() {
   return (
@@ -12,7 +12,8 @@ export default function Page() {
         and other young women related things more meaningful and special. These
         answers will help us with that.
       </p>
-      <form action={handleSubmit}>
+      {/* <form action={handleSubmit}> */}
+      <form method="POST" action="/api/post">
         <>
           <div>
             Username (choose a value from each category):

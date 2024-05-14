@@ -6,7 +6,7 @@ function createSection(key) {
       {data[key].map((value, index) => {
         return (
           <label key={value + index}>
-            {value},
+            {value}
             <input type="radio" name={key} value={value} />
           </label>
         );
