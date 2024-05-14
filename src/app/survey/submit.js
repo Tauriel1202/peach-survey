@@ -8,7 +8,7 @@ async function update(userdata) {
   const session = client.startSession();
   try {
     await session.withTransaction(async () => {
-      const collection = client.db("peach").collection("peach");
+      const collection = client.db("yw").collection("peeps");
       await collection.insertOne(userdata, { session });
     });
   } finally {
