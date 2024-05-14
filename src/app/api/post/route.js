@@ -4,13 +4,18 @@ import { redirect } from "next/navigation";
 import { NextResponse } from "next/server";
 
 async function update(userdata) {
-  const client = new MongoClient(process.env.MONGO_URI);
+  const uri = process.env.MONGO_URI;
+  console.log(uri);
+  const client = new MongoClient(uri);
   await client.connect();
   const session = client.startSession();
   try {
+    console.log('starting db update')
     await session.withTransaction(async () => {
+      console.log('inserting data')
       const collection = client.db("yw").collection("peeps");
       await collection.insertOne(userdata, { session });
+      console.log('finished 💩')
     });
   } finally {
     await session.endSession();
@@ -19,17 +24,18 @@ async function update(userdata) {
 }
 
 export async function POST(req, res) {
-  let body = await req.text()
-  console.log(body)
+  let body = await req.text();
+  console.log(body);
 
-  let searchParams = new URLSearchParams(body)
+  let searchParams = new URLSearchParams(body);
   let data = Array.from(searchParams.entries()).reduce(
     (result, [key, value]) => Object.assign(result, { [key]: value }),
-    {},
-  )
+    {}
+  );
 
-  handleSurveyData(data)
-  return NextResponse.json({success: true}, {status:200})
+  handleSurveyData(data);
+  console.log('moved on')
+  return NextResponse.json({ success: true }, { status: 200 });
 }
 
 function handleSurveyData(data) {
@@ -47,7 +53,7 @@ function handleSurveyData(data) {
     delete data[keys[0]];
   }
 
-  console.log(data)
+  console.log(data);
   try {
     update(data).then(() => {
       console.log("success");
@@ -59,6 +65,6 @@ function handleSurveyData(data) {
   redirect("/done");
 }
 
-export async function GET(){
-    return NextResponse.json({message:"hello world"}, {status:200})
+export async function GET() {
+  return NextResponse.json({ message: "hello world" }, { status: 200 });
 }
