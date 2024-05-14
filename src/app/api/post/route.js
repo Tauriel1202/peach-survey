@@ -10,12 +10,12 @@ async function update(userdata) {
   await client.connect();
   const session = client.startSession();
   try {
-    console.log('starting db update')
+    console.log("starting db update");
     await session.withTransaction(async () => {
-      console.log('inserting data')
+      console.log("inserting data");
       const collection = client.db("yw").collection("peeps");
       await collection.insertOne(userdata, { session });
-      console.log('finished 💩')
+      console.log("finished 💩");
     });
   } finally {
     await session.endSession();
@@ -34,7 +34,7 @@ export async function POST(req, res) {
   );
 
   handleSurveyData(data);
-  console.log('moved on')
+  console.log("moved on");
   return NextResponse.json({ success: true }, { status: 200 });
 }
 
@@ -60,8 +60,8 @@ function handleSurveyData(data) {
     redirect("/done");
   });
   // } catch (error) {
-    // console.log(error);
-    // return;
+  // console.log(error);
+  // return;
   // }
 }
 
