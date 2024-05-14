@@ -7,19 +7,22 @@ async function update(userdata) {
   const uri = process.env.MONGO_URI;
   console.log("broken useless junk:", uri, process.env);
   const client = new MongoClient(uri);
-  await client.connect();
-  const session = client.startSession();
+  console.log("created client");
+
+  // await client.connect();
+  console.log("connected client");
+  // const session = client.startSession();
   // try {
   console.log("starting db update");
-  await session.withTransaction(async () => {
-    console.log("inserting data");
-    const collection = client.db("yw").collection("peeps");
-    await collection.insertOne(userdata, { session });
-    console.log("finished 💩");
-  });
+  // await session.withTransaction(async () => {
+  console.log("inserting data");
+  const collection = client.db("yw").collection("peeps");
+  await collection.insertOne(userdata, { session });
+  console.log("finished 💩");
+  // });
   // } finally {
-  await session.endSession();
-  await client.close();
+  // await session.endSession();
+  // await client.close();
   // }
 }
 
