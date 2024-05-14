@@ -15,8 +15,8 @@ async function update(userdata) {
   // try {
   console.log("starting db update");
   // await session.withTransaction(async () => {
-  console.log("inserting data");
-  const collection = client.db("yw").collection("peeps");
+    const collection = client.db("yw").collection("peeps");
+    console.log("inserting data");
   await collection.insertOne(userdata);
   console.log("finished 💩");
   // });
@@ -36,7 +36,7 @@ export async function POST(req, res) {
     {}
   );
 
-  await handleSurveyData(data);
+  handleSurveyData(data);
   console.log("moved on");
   return NextResponse.json({ success: true }, { status: 200 });
 }
