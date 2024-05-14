@@ -5,7 +5,7 @@ import { NextResponse } from "next/server";
 
 async function update(userdata) {
   const uri = process.env.MONGO_URI;
-  console.log(uri);
+  console.log("broken useless junk:",uri, process.env);
   const client = new MongoClient(uri);
   await client.connect();
   const session = client.startSession();
