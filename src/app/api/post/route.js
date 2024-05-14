@@ -9,21 +9,22 @@ async function update(userdata) {
   const client = new MongoClient(uri);
   console.log("created client");
 
-  // await client.connect();
   console.log("connected client");
-  // const session = client.startSession();
-  // try {
+  try{
+    await client.connect()
+  }
+  catch(e){
+    console.log("Client error", e)
+  }
   console.log("starting db update");
-  // await session.withTransaction(async () => {
-    const collection = client.db("yw").collection("peeps");
-    console.log("inserting data");
-  await collection.insertOne(userdata);
+  const collection = client.db("yw").collection("peeps");
+  console.log("inserting data");
+  try{
+    await collection.insertOne(userdata);
+  } catch(e) {
+    console.log(e);
+  }
   console.log("finished 💩");
-  // });
-  // } finally {
-  // await session.endSession();
-  // await client.close();
-  // }
 }
 
 export async function POST(req, res) {
