@@ -72,6 +72,6 @@
 //   return NextResponse.json({ message: "hello world" }, { status: 200 });
 // }
 
-export async function POST(){
+export async function POST() {
   return NextResponse.json({ message: "hello world" }, { status: 200 });
 }

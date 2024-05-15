@@ -11,7 +11,7 @@ export async function POST(req, res) {
   try {
     const client = await clientPromise;
     const db = client.db("yw");
-    await db.collection("peeps").insertOne({ abe: 123 });
+    await db.collection("peeps").insertOne(body);
   } catch (e) {
     console.error(e);
   }
