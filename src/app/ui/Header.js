@@ -2,7 +2,12 @@ function Header() {
   return (
     <header>
       <div className="imgDiv">
-        <img src="/images/torch_xsmall.webp" alt="logo" width={50} height={50} />
+        <img
+          src="/images/torch_xsmall.webp"
+          alt="logo"
+          width={50}
+          height={50}
+        />
       </div>
       <h1>Young Women&apos;s Website</h1>
       <nav>

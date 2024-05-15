@@ -13,7 +13,7 @@ export default function Page() {
         answers will help us with that.
       </p>
       {/* <form action={handleSubmit}> */}
-      <form method="POST" action="/api/post">
+      <form method="POST" action="/api/mongo-post">
         <>
           <div>
             Username (choose a value from each category):
