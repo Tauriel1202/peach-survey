@@ -29,6 +29,11 @@ body {
   background-color: white;
 }
 
+form {
+  max-width: 640px;
+  margin: auto;
+}
+
 footer .imgDiv {
   width: 5em;
   height: 5em;
@@ -200,17 +205,31 @@ label.color:has(input[type="radio"]:checked),
 }
 
 .userDiv {
+  /* max-width: 80%; */
   height: 150px;
   background-color: rgb(112, 79, 28);
   padding: 2%;
+  /* margin: auto; */
   display: flex;
 }
 
 .scroll {
+  width: 75%;
   background-image: linear-gradient(0deg, #f7e4c9, #fff8ed, #f7e4c9);
   /* background-image: linear-gradient(0deg, #f7e4c9 blue #f7e4c9); */
-  margin: 0.2em auto;
+  margin: 0.2em 2%;
   overflow-y: scroll;
+}
+
+.scroll label {
+  text-align: center;
+}
+
+.scroll label,
+button,
+label.color,
+label.color input {
+  cursor: pointer;
 }
 
 .scroll label:has(input[type="radio"]:checked) {
